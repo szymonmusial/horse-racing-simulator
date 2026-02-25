@@ -1,6 +1,7 @@
 <template>
   <BasePanel data-test="race-horse-list-panel" class="flex-1 flex flex-col" title="Horse list">
-    <HorseCardList :horses="horses" />
+    <HorseCardList v-if="horses.length > 0" :horses="horses" />
+    <div v-else class="p-4 text-center text-stone-500">No horses in the list</div>
   </BasePanel>
 </template>
 
