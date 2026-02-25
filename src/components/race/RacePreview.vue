@@ -7,7 +7,7 @@
 
     <RaceTrack
       v-for="position in round.positions"
-      :key="position.horseId"
+      :key="`${round.id}-${position.horseId}`"
       :horse="getHorse(position.horseId)"
       :position="position"
     />
