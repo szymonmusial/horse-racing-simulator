@@ -1,15 +1,25 @@
 <template>
-  <div class="h-full p-4 flex flex-col">
-    <BasePanel class="w-1/3 min-h-0 flex-1 flex flex-col" title="Horse list">
+  <div class="h-full p-4 flex flex-row gap-4">
+    <BasePanel class="min-h-0 w-1/3 flex-1 flex flex-col" title="Horse list">
       <HorseCardList :horses="horses" />
+    </BasePanel>
+
+    <div class="min-h-0 w-1/3 flex-1 flex flex-col"></div>
+
+    <BasePanel class="min-h-0 w-1/4 flex flex-col" title="Race program">
+      <RaceProgram :rounds="rounds" />
     </BasePanel>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Horse } from '@/types/horse'
+import type { Round } from '@/types/round'
+import { RoundStatus } from '@/types/round'
+import { ROUND_DISTANCES } from '@/constants/race'
 import HorseCardList from '@/components/horse/HorseCardList.vue'
 import BasePanel from '@/components/base/panel/BasePanel.vue'
+import RaceProgram from '@/components/race/RaceProgram.vue'
 
 const horses: Horse[] = [
   { id: 1, name: 'Lightning', color: '#8B4513', condition: 25 },
@@ -33,4 +43,43 @@ const horses: Horse[] = [
   { id: 19, name: 'Stallion', color: '#6B4423', condition: 37 },
   { id: 20, name: 'Wanderer', color: '#3D2817', condition: 63 },
 ].sort((a, b) => b.condition - a.condition)
+
+const rounds: Round[] = [
+  {
+    order: 1,
+    distance: ROUND_DISTANCES[1]!,
+    horses: horses.slice(0, 10),
+    status: RoundStatus.FINISHED,
+  },
+  {
+    order: 2,
+    distance: ROUND_DISTANCES[2]!,
+    horses: horses.slice(5, 15),
+    status: RoundStatus.IN_PROGRESS,
+  },
+  {
+    order: 3,
+    distance: ROUND_DISTANCES[3]!,
+    horses: horses.slice(10, 20),
+    status: RoundStatus.PENDING,
+  },
+  {
+    order: 4,
+    distance: ROUND_DISTANCES[4]!,
+    horses: horses.slice(0, 10),
+    status: RoundStatus.PENDING,
+  },
+  {
+    order: 5,
+    distance: ROUND_DISTANCES[5]!,
+    horses: horses.slice(2, 12),
+    status: RoundStatus.PENDING,
+  },
+  {
+    order: 6,
+    distance: ROUND_DISTANCES[6]!,
+    horses: horses.slice(4, 14),
+    status: RoundStatus.PENDING,
+  },
+]
 </script>
