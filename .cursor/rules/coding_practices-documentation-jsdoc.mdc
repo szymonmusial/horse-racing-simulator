@@ -1,0 +1,8 @@
+## CODING_PRACTICES
+
+### Guidelines for DOCUMENTATION
+
+#### JSDOC
+
+- Do not use JSDoc comments in the project (no @param, @returns, @typedef, or block comments on types/components)
+
