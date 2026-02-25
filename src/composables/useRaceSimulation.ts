@@ -1,5 +1,5 @@
 import { computed, onUnmounted, ref, type Ref } from 'vue'
-import { RoundStatus, type Round } from '@/types/round'
+import { ROUND_STATUS, type Round } from '@/types/round'
 import { useAnimationLoop } from '@/composables/useAnimationLoop'
 import { BASE_SPEED, NEXT_ROUND_DELAY_MS } from '@/constants/race'
 
@@ -39,12 +39,12 @@ export const useRaceSimulation = (rounds: Ref<Round[]>) => {
   // -----------------------------------------------------------------------------
   // Derived State
   // -----------------------------------------------------------------------------
-  const currentRound = computed(() => rounds.value.find((r) => r.status === RoundStatus.IN_PROGRESS))
+  const currentRound = computed(() => rounds.value.find((r) => r.status === ROUND_STATUS.IN_PROGRESS))
 
-  const nextPendingRound = computed(() => rounds.value.find((r) => r.status === RoundStatus.PENDING))
+  const nextPendingRound = computed(() => rounds.value.find((r) => r.status === ROUND_STATUS.PENDING))
 
   const lastFinishedRound = computed(() => {
-    const finished = rounds.value.filter((r) => r.status === RoundStatus.FINISHED)
+    const finished = rounds.value.filter((r) => r.status === ROUND_STATUS.FINISHED)
     return finished.length > 0 ? finished[finished.length - 1] : null
   })
 
@@ -86,7 +86,7 @@ export const useRaceSimulation = (rounds: Ref<Round[]>) => {
     const round = nextPendingRound.value
     if (!round || currentRound.value) return
 
-    round.status = RoundStatus.IN_PROGRESS
+    round.status = ROUND_STATUS.IN_PROGRESS
 
     horseStates.value = round.horses.map((horse) => ({
       horseId: horse.id,
@@ -163,7 +163,7 @@ export const useRaceSimulation = (rounds: Ref<Round[]>) => {
       if (pos) pos.placement = result.placement
     }
 
-    round.status = RoundStatus.FINISHED
+    round.status = ROUND_STATUS.FINISHED
 
     if (nextPendingRound.value) {
       transitionTimeoutId = setTimeout(() => {

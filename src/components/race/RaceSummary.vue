@@ -7,9 +7,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { RoundStatus, type Round } from '@/types/round'
+import { ROUND_STATUS, type Round } from '@/types/round'
 import RoundSummary from '@/components/round/RoundSummary.vue'
 
 const props = defineProps<{ rounds: Round[] }>()
-const finishedRounds = computed(() => props.rounds.filter((round) => round.status === RoundStatus.FINISHED))
+const finishedRounds = computed(() => props.rounds.filter((round) => round.status === ROUND_STATUS.FINISHED))
 </script>

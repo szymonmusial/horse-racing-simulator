@@ -1,6 +1,6 @@
 import type { Horse } from '@/types/horse'
 
-export enum RoundStatus {
+export enum ROUND_STATUS {
   PENDING = 'PENDING',
   IN_PROGRESS = 'IN_PROGRESS',
   FINISHED = 'FINISHED',
@@ -10,7 +10,7 @@ export type Round = {
   id: string
   order: number
   distance: number
-  status: RoundStatus
+  status: ROUND_STATUS
 
   horses: Horse[]
   positions: HorseRoundPosition[]

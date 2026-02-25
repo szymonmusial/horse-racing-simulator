@@ -6,18 +6,18 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { RoundStatus } from '@/types/round'
+import { ROUND_STATUS } from '@/types/round'
 import BaseBadge, { type BadgeSize } from '@/components/base/badge/BaseBadge.vue'
 
-const props = defineProps<{ status: RoundStatus; size?: BadgeSize }>()
+const props = defineProps<{ status: ROUND_STATUS; size?: BadgeSize }>()
 
 const label = computed(() => {
   switch (props.status) {
-    case RoundStatus.PENDING:
+    case ROUND_STATUS.PENDING:
       return 'Pending'
-    case RoundStatus.IN_PROGRESS:
+    case ROUND_STATUS.IN_PROGRESS:
       return 'In progress'
-    case RoundStatus.FINISHED:
+    case ROUND_STATUS.FINISHED:
       return 'Finished'
     default:
       return 'Unknown'
@@ -26,11 +26,11 @@ const label = computed(() => {
 
 const variant = computed(() => {
   switch (props.status) {
-    case RoundStatus.PENDING:
+    case ROUND_STATUS.PENDING:
       return 'default'
-    case RoundStatus.IN_PROGRESS:
+    case ROUND_STATUS.IN_PROGRESS:
       return 'primary'
-    case RoundStatus.FINISHED:
+    case ROUND_STATUS.FINISHED:
       return 'success'
     default:
       return 'default'

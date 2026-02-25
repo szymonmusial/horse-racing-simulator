@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import type { Horse } from '@/types/horse'
-import { RoundStatus, type Round } from '@/types/round'
+import { ROUND_STATUS, type Round } from '@/types/round'
 import {
   ROUND_DISTANCES,
   HORSE_COUNT,
@@ -63,7 +63,7 @@ export const useRaceProgram = () => {
       id: crypto.randomUUID(),
       order: i + 1,
       distance: ROUND_DISTANCES[i + 1]!,
-      status: RoundStatus.PENDING,
+      status: ROUND_STATUS.PENDING,
       horses: shuffleArray(horses).slice(0, HORSES_PER_ROUND),
       positions: [],
       results: [],
