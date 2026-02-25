@@ -1,7 +1,7 @@
 <template>
-  <div data-test="horse-card-list" class="flex flex-col gap-2 p-3" role="list">
+  <ul data-test="horse-card-list" class="flex flex-col gap-2 p-3 list-none m-0" role="list">
     <HorseCard v-for="horse in horses" :key="horse.id" :horse="horse" />
-  </div>
+  </ul>
 </template>
 
 <script setup lang="ts">
