@@ -4,7 +4,9 @@
       <HorseCardList :horses="horses" />
     </BasePanel>
 
-    <div class="min-h-0 w-1/3 flex-1 flex flex-col"></div>
+    <BasePanel class="min-h-0 w-1/3 flex-1 flex flex-col" title="Race results">
+      <RaceResults :rounds-results="roundsResults" />
+    </BasePanel>
 
     <BasePanel class="min-h-0 w-1/4 flex flex-col" title="Race program">
       <RaceProgram :rounds="rounds" />
@@ -14,12 +16,13 @@
 
 <script setup lang="ts">
 import type { Horse } from '@/types/horse'
-import type { Round } from '@/types/round'
+import type { Round, RoundResult, RoundResults } from '@/types/round'
 import { RoundStatus } from '@/types/round'
 import { ROUND_DISTANCES } from '@/constants/race'
 import HorseCardList from '@/components/horse/HorseCardList.vue'
 import BasePanel from '@/components/base/panel/BasePanel.vue'
 import RaceProgram from '@/components/race/RaceProgram.vue'
+import RaceResults from '@/components/race/RaceResults.vue'
 
 const horses: Horse[] = [
   { id: 1, name: 'Lightning', color: '#8B4513', condition: 25 },
@@ -82,4 +85,20 @@ const rounds: Round[] = [
     status: RoundStatus.PENDING,
   },
 ]
+
+// Sample results per round – for finished rounds a list of results, for the rest empty
+const buildResultsForRound = (round: Round): RoundResult[] => {
+  if (round.status !== RoundStatus.FINISHED) return []
+  const withTime = round.horses.slice(0, 8).map((horse, index) => ({
+    horse,
+    timeMs: (125.5 + index * 2.3 + (index % 3) * 0.8) * 1000,
+  }))
+  withTime.sort((a, b) => a.timeMs - b.timeMs)
+  return withTime.map((r, i) => ({ ...r, position: i + 1 }))
+}
+
+const roundsResults: RoundResults[] = rounds.map((round) => ({
+  round,
+  results: buildResultsForRound(round),
+}))
 </script>

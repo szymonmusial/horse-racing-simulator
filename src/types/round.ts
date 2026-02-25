@@ -12,3 +12,14 @@ export type Round = {
   status: RoundStatus
   horses: Horse[]
 }
+
+export type RoundResult = {
+  horse: Horse
+  position: number
+  timeMs: number
+}
+
+export type RoundResults = {
+  round: Round
+  results: RoundResult[]
+}
