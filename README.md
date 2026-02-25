@@ -1,6 +1,6 @@
 # Horse Racing Simulator
 
-[![Tests](https://github.com/szymonmusial/horse-racing-simulator/actions/workflows/test.yml/badge.svg)](https://github.com/szymonmusial/horse-racing-simulator/actions/workflows/test.yml)
+[![Tests](https://github.com/szymonmusial/horse-racing-simulator/actions/workflows/test.yml/badge.svg)](https://github.com/szymonmusial/horse-racing-simulator/actions/workflows/test.yml) [![Demo](https://img.shields.io/badge/demo-live-green?style=flat)](https://szymonmusial.github.io/horse-racing-simulator/)
 
 A web application for running an interactive horse racing simulation. It lets you generate a horse pool and race program, run 6 rounds sequentially with animated movement on the track, and view results after each round.
 
