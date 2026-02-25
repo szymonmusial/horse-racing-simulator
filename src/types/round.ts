@@ -15,11 +15,11 @@ export type Round = {
 
 export type RoundResult = {
   horse: Horse
-  position: number
+  placement: number
   timeMs: number
 }
 
-export type RoundResults = {
+export type RoundSummary = {
   round: Round
   results: RoundResult[]
 }
