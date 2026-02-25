@@ -28,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import { useRaceProgram } from '@/composables/useRaceProgram'
-import { useRaceSimulation } from '@/composables/useRaceSimulation'
+import { storeToRefs } from 'pinia'
+import { useRaceStore } from '@/stores/race'
 import BasePanel from '@/components/base/panel/BasePanel.vue'
 import RacePreview from '@/components/race/RacePreview.vue'
 import RaceSummary from '@/components/race/RaceSummary.vue'
@@ -37,11 +37,10 @@ import RaceProgram from '@/components/race/RaceProgram.vue'
 import RaceHeader from '@/components/race/RaceHeader.vue'
 import HorseCardList from '@/components/horse/HorseCardList.vue'
 
-const { horses, rounds, generate } = useRaceProgram()
-const { displayRound, canStart, canPause, start, pause, stop } = useRaceSimulation(rounds)
+const raceStore = useRaceStore()
+const { horses, rounds, displayRound, canStart, canPause } = storeToRefs(raceStore)
 
-const generateProgram = () => {
-  stop()
-  generate()
-}
+const start = () => raceStore.start()
+const pause = () => raceStore.pause()
+const generateProgram = () => raceStore.generateProgram()
 </script>
