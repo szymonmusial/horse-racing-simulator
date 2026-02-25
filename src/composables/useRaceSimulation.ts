@@ -143,10 +143,11 @@ export const useRaceSimulation = (rounds: Ref<Round[]>) => {
   }
 
   const updatePlacements = (round: Round) => {
-    const sorted = [...round.positions].sort((a, b) => b.progress - a.progress)
-    sorted.forEach((pos, i) => {
-      pos.placement = i + 1
-    })
+    const finished = roundResults.value
+    const running = round.positions.filter((p) => !finished.some((r) => r.horseId === p.horseId))
+
+    finished.forEach((result, i) => (positionMap.get(result.horseId)!.placement = i + 1))
+    running.sort((a, b) => b.progress - a.progress).forEach((pos, i) => (pos.placement = finished.length + i + 1))
   }
 
   const finalizeRound = (round: Round) => {
