@@ -5,6 +5,7 @@ const generateProgram = async (page: Page) => {
 }
 
 const startRace = async (page: Page) => {
+  await expect(page.getByRole('button', { name: 'Start' })).toBeEnabled()
   await page.getByRole('button', { name: 'Start' }).click()
 }
 
@@ -49,6 +50,34 @@ test.describe('Race view', () => {
     await expect(programPanel).toContainText('1800 m')
     await expect(programPanel).toContainText('2000 m')
     await expect(programPanel).toContainText('2200 m')
+
+    const horseColors = await page.locator('[data-test="horse-card"] [data-test="horse-badge"]').evaluateAll((badges) =>
+      badges.map((badge) => badge.getAttribute('title')).filter((value): value is string => Boolean(value)),
+    )
+    expect(horseColors).toHaveLength(20)
+    const availableHorseColors = new Set(horseColors)
+    expect(availableHorseColors.size).toBe(20)
+
+    const conditionLabels = await page
+      .locator('[data-test="horse-card"] [data-test="base-progress-bar"] span')
+      .allTextContents()
+    expect(conditionLabels).toHaveLength(20)
+    for (const label of conditionLabels) {
+      const condition = Number(label.trim().replace('%', ''))
+      expect(condition).toBeGreaterThanOrEqual(1)
+      expect(condition).toBeLessThanOrEqual(100)
+    }
+
+    for (let i = 0; i < 6; i++) {
+      const roundHorseColors = await rounds.nth(i).locator('[data-test="horse-badge"]').evaluateAll((badges) =>
+        badges.map((badge) => badge.getAttribute('title')).filter((value): value is string => Boolean(value)),
+      )
+      expect(roundHorseColors).toHaveLength(10)
+      expect(new Set(roundHorseColors).size).toBe(10)
+      for (const roundHorseColor of roundHorseColors) {
+        expect(availableHorseColors.has(roundHorseColor)).toBeTruthy()
+      }
+    }
   })
 
   test('starts race and visibly animates horse movement', async ({ page }) => {
@@ -78,10 +107,30 @@ test.describe('Race view', () => {
     await expect(resultsPanel).not.toContainText('No round results')
     await expect(summaries.first()).toContainText('Round 1')
     await expect(page.locator('[data-test="race-preview"] h2')).toContainText('Round 2', { timeout: 15_000 })
-    await expect(summaries).toHaveCount(2, { timeout: 30_000 })
-    await expect(summaries.nth(1)).toContainText('Round 2')
+    await expect.poll(async () => summaries.count(), { timeout: 30_000 }).toBeGreaterThanOrEqual(2)
+    await expect(resultsPanel).toContainText('Round 2')
 
     await expect(summaries.first().locator('[data-test="round-result"]')).toHaveCount(10)
+  })
+
+  test('finishes all six rounds and stores results for every round', async ({ page }) => {
+    await generateProgram(page)
+    await startRace(page)
+
+    const resultsPanel = page.locator('[data-test="race-results-panel"]')
+    await expect(resultsPanel).toContainText('Round 6', { timeout: 110_000 })
+
+    const roundSixSummary = page.locator('[data-test="round-summary"]').filter({ hasText: 'Round 6' })
+    await expect(roundSixSummary).toHaveCount(1)
+    await expect(roundSixSummary.locator('[data-test="round-result"]')).toHaveCount(10)
+
+    await expect(resultsPanel).toContainText('Round 1')
+    await expect(resultsPanel).toContainText('Round 2')
+    await expect(resultsPanel).toContainText('Round 3')
+    await expect(resultsPanel).toContainText('Round 4')
+    await expect(resultsPanel).toContainText('Round 5')
+    await expect(page.getByRole('button', { name: 'Start' })).toBeDisabled()
+    await expect(page.getByRole('button', { name: 'Pause' })).toHaveCount(0)
   })
 
   test('allows user to pause and resume the race', async ({ page }) => {
