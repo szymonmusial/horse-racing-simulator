@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full flex-col gap-3 p-3">
+  <div data-test="race-preview" class="flex h-full flex-col gap-3 p-3">
     <header class="flex items-baseline justify-between py-2">
       <h2 class="text-base font-semibold text-slate-800">Round {{ round.order }}</h2>
       <span class="text-sm text-slate-600">{{ round.distance }} m</span>

@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li data-test="horse-card">
     <BaseCard :accent-color="horse.color">
       <div class="flex items-center justify-between gap-3">
         <HorseIdentity :horse="horse" />

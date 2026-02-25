@@ -1,5 +1,5 @@
 <template>
-  <span class="inline-flex items-center justify-center rounded-full font-medium" :class="[size, variant]">
+  <span data-test="base-badge" class="inline-flex items-center justify-center rounded-full font-medium" :class="[size, variant]">
     <slot />
   </span>
 </template>

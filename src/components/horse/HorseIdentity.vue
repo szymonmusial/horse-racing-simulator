@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-2">
+  <div data-test="horse-identity" class="flex items-center gap-2">
     <HorseBadge :color="horse.color" :size="32" />
     <span class="min-w-0 flex-1 font-medium text-stone-800">
       {{ horse.name }}

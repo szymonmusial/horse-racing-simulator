@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2 p-3" role="list">
+  <div data-test="horse-card-list" class="flex flex-col gap-2 p-3" role="list">
     <HorseCard v-for="horse in horses" :key="horse.id" :horse="horse" />
   </div>
 </template>

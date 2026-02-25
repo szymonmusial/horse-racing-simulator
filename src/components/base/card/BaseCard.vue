@@ -1,5 +1,6 @@
 <template>
   <div
+    data-test="base-card"
     class="rounded-lg border border-stone-200 bg-white px-4 py-2 shadow-sm transition hover:border-slate-500 hover:shadow-md"
     :class="{ 'border-l-4': accentColor }"
     :style="style"

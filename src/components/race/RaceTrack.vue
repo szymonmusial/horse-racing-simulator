@@ -1,5 +1,5 @@
 <template>
-  <article class="rounded-lg border border-stone-200 bg-white p-3">
+  <article data-test="race-track" class="rounded-lg border border-stone-200 bg-white p-3">
     <div class="mb-2 flex items-center justify-between gap-2">
       <span class="min-w-0 truncate text-sm font-medium text-stone-800">
         {{ horse.name }}

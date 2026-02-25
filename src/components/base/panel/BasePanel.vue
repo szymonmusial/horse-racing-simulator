@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm">
+  <div data-test="base-panel" class="flex flex-col overflow-hidden rounded-xl bg-white shadow-sm">
     <header
       v-if="$slots.header || title"
       class="bg-slate-700 px-4 py-2.5 text-center font-bold uppercase tracking-wide text-white"

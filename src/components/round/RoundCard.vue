@@ -1,5 +1,5 @@
 <template>
-  <BaseCard no-accent>
+  <BaseCard data-test="round-card" no-accent>
     <div class="flex flex-col gap-3">
       <header class="flex items-start justify-between">
         <div>

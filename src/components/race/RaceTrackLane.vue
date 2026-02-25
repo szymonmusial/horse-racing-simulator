@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-12 overflow-hidden rounded-md border border-stone-200 bg-emerald-50/30">
+  <div data-test="race-track-lane" class="relative h-12 overflow-hidden rounded-md border border-stone-200 bg-emerald-50/30">
     <RaceFinishLine />
     <div class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-stone-300/50" />
     <RaceTrackHorse :horse="horse" :position="position" />

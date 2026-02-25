@@ -1,5 +1,5 @@
 <template>
-  <BasePanel class="w-1/6 flex-1 flex flex-col" title="Horse list">
+  <BasePanel data-test="race-horse-list-panel" class="flex-1 flex flex-col" title="Horse list">
     <HorseCardList :horses="horses" />
   </BasePanel>
 </template>

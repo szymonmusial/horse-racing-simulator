@@ -1,5 +1,5 @@
 <template>
-  <RoundCard :round="round">
+  <RoundCard data-test="round-program" :round="round">
     <div class="grid grid-cols-2 gap-2">
       <HorseIdentity v-for="horse in round.horses" :key="horse.id" :horse="horse" class="text-sm" />
     </div>

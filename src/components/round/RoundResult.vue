@@ -1,5 +1,5 @@
 <template>
-  <BaseCard :accent-color="getPodiumAccent(result.placement)" class="flex items-center gap-4">
+  <BaseCard data-test="round-result" :accent-color="getPodiumAccent(result.placement)" class="flex items-center gap-4">
     <span
       class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold"
       :class="getPlacementClass(result.placement)"

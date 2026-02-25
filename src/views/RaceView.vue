@@ -3,15 +3,15 @@
     <RaceHeader />
 
     <div class="flex-1 min-h-0 p-4 flex flex-row gap-4">
-      <RaceHorseListPanel />
+      <RaceHorseListPanel class="w-1/6" />
 
       <div class="flex flex-col gap-4 w-3/6">
         <RaceTrackPanel />
       </div>
 
       <div class="flex flex-row gap-4 w-2/6">
-        <RaceResultsPanel />
-        <RaceProgramPanel />
+        <RaceResultsPanel class="w-1/2" />
+        <RaceProgramPanel class="w-1/2" />
       </div>
     </div>
   </div>

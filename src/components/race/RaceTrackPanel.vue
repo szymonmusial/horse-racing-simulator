@@ -1,5 +1,5 @@
 <template>
-  <BasePanel class="flex-1 flex flex-col" title="Race track">
+  <BasePanel data-test="race-track-panel" class="flex-1 flex flex-col" title="Race track">
     <RacePreview v-if="displayRound" :round="displayRound" />
     <div v-else class="p-4 text-center text-stone-500">No race in progress</div>
   </BasePanel>

@@ -1,5 +1,6 @@
 <template>
   <div
+    data-test="race-track-horse"
     class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 transition-[left] duration-100 ease-linear"
     :style="horseStyle"
   >

@@ -1,5 +1,5 @@
 <template>
-  <BaseBadge :variant="variant" :size="size">
+  <BaseBadge data-test="round-status-badge" :variant="variant" :size="size">
     {{ label }}
   </BaseBadge>
 </template>

@@ -1,5 +1,8 @@
 <template>
-  <header class="flex flex-shrink-0 items-center justify-between gap-4 bg-slate-700 px-4 py-2.5 text-white">
+  <header
+    data-test="race-header"
+    class="flex flex-shrink-0 items-center justify-between gap-4 bg-slate-700 px-4 py-2.5 text-white"
+  >
     <h1 class="text-lg font-semibold text-white">Horse Racing Simulator</h1>
     <div class="flex items-center gap-4">
       <BaseButton variant="light" text="Generate" @click="generateProgram" />

@@ -1,5 +1,6 @@
 <template>
   <span
+    data-test="horse-badge"
     class="inline-flex shrink-0 items-center justify-center overflow-hidden rounded"
     :style="{ width: `${size}px`, height: `${size}px` }"
     :title="color"

@@ -1,5 +1,5 @@
 <template>
-  <RoundCard :round="round">
+  <RoundCard data-test="round-summary" :round="round">
     <div v-if="round.results.length > 0" class="flex flex-col gap-2">
       <RoundResult
         v-for="result in round.results"

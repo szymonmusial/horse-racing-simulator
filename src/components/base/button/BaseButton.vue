@@ -1,5 +1,6 @@
 <template>
   <button
+    data-test="base-button"
     type="button"
     class="inline-flex cursor-pointer items-center justify-center rounded-lg font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50"
     :class="[sizeClass, variantClass]"

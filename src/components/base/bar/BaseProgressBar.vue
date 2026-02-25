@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-w-0 flex-1 items-center gap-2">
+  <div data-test="base-progress-bar" class="flex min-w-0 flex-1 items-center gap-2">
     <div class="h-2 min-w-0 flex-1 overflow-hidden rounded-full bg-stone-200">
       <div class="h-full rounded-full transition-all duration-500 ease-out" :class="color" :style="{ width }" />
     </div>
