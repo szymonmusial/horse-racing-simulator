@@ -1,0 +1,7 @@
+{
+  "extends": "@tsconfig/node24/tsconfig.json",
+  "include": ["tests/e2e/**/*"],
+  "compilerOptions": {
+    "noEmit": true
+  }
+}
