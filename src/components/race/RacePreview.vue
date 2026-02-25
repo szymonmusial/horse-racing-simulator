@@ -5,14 +5,20 @@
       <span class="text-sm text-slate-600">{{ round.distance }} m</span>
     </header>
 
-    <RaceTrack v-for="entry in racePositions" :key="entry.horse.id" :horse="entry.horse" :position="entry.track" />
+    <RaceTrack
+      v-for="position in round.positions"
+      :key="position.horseId"
+      :horse="getHorse(position.horseId)"
+      :position="position"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import type { Horse } from '@/types/horse'
 import type { Round } from '@/types/round'
-import type { RacePosition } from '@/types/race'
 import RaceTrack from '@/components/race/RaceTrack.vue'
 
-defineProps<{ round: Round; racePositions: RacePosition[] }>()
+const props = defineProps<{ round: Round }>()
+const getHorse = (horseId: Horse['id']) => props.round.horses.find((horse) => horse.id === horseId)!
 </script>

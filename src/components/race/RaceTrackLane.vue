@@ -8,9 +8,9 @@
 
 <script setup lang="ts">
 import type { Horse } from '@/types/horse'
-import type { TrackPosition } from '@/types/race'
+import type { HorseRoundPosition } from '@/types/round'
 import RaceFinishLine from '@/components/race/RaceFinishLine.vue'
 import RaceTrackHorse from '@/components/race/RaceTrackHorse.vue'
 
-defineProps<{ horse: Horse; position: TrackPosition }>()
+defineProps<{ horse: Horse; position: HorseRoundPosition }>()
 </script>

@@ -10,12 +10,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Horse } from '@/types/horse'
-import type { TrackPosition } from '@/types/race'
+import type { HorseRoundPosition } from '@/types/round'
 import HorseBadge from '@/components/horse/HorseBadge.vue'
 
 const props = defineProps<{
   horse: Horse
-  position: TrackPosition
+  position: HorseRoundPosition
 }>()
 
 const horseStyle = computed(() => ({ left: `${props.position.progress}%` }))

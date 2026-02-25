@@ -6,18 +6,19 @@
     >
       {{ result.placement }}
     </span>
-    <HorseIdentity :horse="result.horse" class="min-w-0 flex-1 text-sm" />
+    <HorseIdentity :horse="horse" class="min-w-0 flex-1 text-sm" />
     <span class="shrink-0 font-mono text-sm tabular-nums text-stone-600">{{ formatTime(result.timeMs) }}</span>
   </BaseCard>
 </template>
 
 <script setup lang="ts">
-import type { RoundResult } from '@/types/round'
+import type { Horse } from '@/types/horse'
+import type { HorseRoundResult } from '@/types/round'
 import { formatTime } from '@/utils/time'
 import BaseCard from '@/components/base/card/BaseCard.vue'
 import HorseIdentity from '@/components/horse/HorseIdentity.vue'
 
-defineProps<{ result: RoundResult }>()
+defineProps<{ result: HorseRoundResult; horse: Horse }>()
 
 const PODIUM: Record<number, { accent: string; class: string }> = {
   1: { accent: '#D4AF37', class: 'bg-amber-100 text-amber-800' },

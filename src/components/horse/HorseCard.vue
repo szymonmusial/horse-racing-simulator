@@ -3,7 +3,7 @@
     <BaseCard :accent-color="horse.color">
       <div class="flex items-center justify-between gap-3">
         <HorseIdentity :horse="horse" />
-        <div class="w-40">
+        <div class="w-28">
           <BaseProgressBar :value="horse.condition" :max="100" />
         </div>
       </div>

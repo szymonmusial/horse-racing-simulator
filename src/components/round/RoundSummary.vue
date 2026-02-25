@@ -1,16 +1,23 @@
 <template>
-  <RoundCard :round="roundSummary.round">
-    <div v-if="roundSummary.results.length > 0" class="flex flex-col gap-2">
-      <RoundResult v-for="result in roundSummary.results" :key="result.horse.id" :result="result" />
+  <RoundCard :round="round">
+    <div v-if="round.results.length > 0" class="flex flex-col gap-2">
+      <RoundResult
+        v-for="result in round.results"
+        :key="result.horseId"
+        :result="result"
+        :horse="getHorse(result.horseId)"
+      />
     </div>
     <p v-else class="py-2 text-center text-sm text-stone-500">No results</p>
   </RoundCard>
 </template>
 
 <script setup lang="ts">
-import type { RoundSummary } from '@/types/round'
+import type { Horse } from '@/types/horse'
+import type { Round } from '@/types/round'
 import RoundCard from '@/components/round/RoundCard.vue'
 import RoundResult from '@/components/round/RoundResult.vue'
 
-defineProps<{ roundSummary: RoundSummary }>()
+const props = defineProps<{ round: Round }>()
+const getHorse = (horseId: Horse['id']) => props.round.horses.find((h) => h.id === horseId)!
 </script>

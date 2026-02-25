@@ -7,19 +7,24 @@ export enum RoundStatus {
 }
 
 export type Round = {
+  id: string
   order: number
   distance: number
   status: RoundStatus
+
   horses: Horse[]
+  positions: HorseRoundPosition[]
+  results: HorseRoundResult[]
 }
 
-export type RoundResult = {
-  horse: Horse
+export type HorseRoundResult = {
+  horseId: Horse['id']
   placement: number
   timeMs: number
 }
 
-export type RoundSummary = {
-  round: Round
-  results: RoundResult[]
+export type HorseRoundPosition = {
+  horseId: Horse['id']
+  progress: number
+  placement: number
 }
