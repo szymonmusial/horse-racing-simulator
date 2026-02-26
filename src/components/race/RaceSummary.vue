@@ -1,0 +1,15 @@
+<template>
+  <div data-test="race-summary" v-if="finishedRounds.length > 0" class="flex flex-col gap-3 p-3">
+    <RoundSummary v-for="round in finishedRounds" :key="round.order" :round="round" :results="round.results" />
+  </div>
+  <div data-test="race-summary" v-else class="p-4 text-center text-stone-500">No round results</div>
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ROUND_STATUS, type Round } from '@/types/round'
+import RoundSummary from '@/components/round/RoundSummary.vue'
+
+const props = defineProps<{ rounds: Round[] }>()
+const finishedRounds = computed(() => props.rounds.filter((round) => round.status === ROUND_STATUS.FINISHED))
+</script>
