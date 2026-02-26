@@ -51,9 +51,11 @@ test.describe('Race view', () => {
     await expect(programPanel).toContainText('2000 m')
     await expect(programPanel).toContainText('2200 m')
 
-    const horseColors = await page.locator('[data-test="horse-card"] [data-test="horse-badge"]').evaluateAll((badges) =>
-      badges.map((badge) => badge.getAttribute('title')).filter((value): value is string => Boolean(value)),
-    )
+    const horseColors = await page
+      .locator('[data-test="horse-card"] [data-test="horse-badge"]')
+      .evaluateAll((badges) =>
+        badges.map((badge) => badge.getAttribute('title')).filter((value): value is string => Boolean(value)),
+      )
     expect(horseColors).toHaveLength(20)
     const availableHorseColors = new Set(horseColors)
     expect(availableHorseColors.size).toBe(20)
@@ -69,9 +71,12 @@ test.describe('Race view', () => {
     }
 
     for (let i = 0; i < 6; i++) {
-      const roundHorseColors = await rounds.nth(i).locator('[data-test="horse-badge"]').evaluateAll((badges) =>
-        badges.map((badge) => badge.getAttribute('title')).filter((value): value is string => Boolean(value)),
-      )
+      const roundHorseColors = await rounds
+        .nth(i)
+        .locator('[data-test="horse-badge"]')
+        .evaluateAll((badges) =>
+          badges.map((badge) => badge.getAttribute('title')).filter((value): value is string => Boolean(value)),
+        )
       expect(roundHorseColors).toHaveLength(10)
       expect(new Set(roundHorseColors).size).toBe(10)
       for (const roundHorseColor of roundHorseColors) {

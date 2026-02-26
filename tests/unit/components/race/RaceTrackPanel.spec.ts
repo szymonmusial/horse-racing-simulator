@@ -7,9 +7,7 @@ import { useRaceStore } from '@/stores/race'
 import { ROUND_STATUS, type Round } from '@/types/round'
 import type { Horse } from '@/types/horse'
 
-const horsesFixture: Horse[] = [
-  { id: 'h-1', name: 'Silver Arrow', color: '#111111', condition: 90 },
-]
+const horsesFixture: Horse[] = [{ id: 'h-1', name: 'Silver Arrow', color: '#111111', condition: 90 }]
 
 const inProgressRoundFixture: Round = {
   id: 'r-1',

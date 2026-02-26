@@ -7,9 +7,7 @@ import type { Horse } from '@/types/horse'
 import * as raceProgramModule from '@/composables/useRaceProgram'
 import * as raceSimulationModule from '@/composables/useRaceSimulation'
 
-const horsesFixture: Horse[] = [
-  { id: 'h-1', name: 'Silver Arrow', color: '#111111', condition: 90 },
-]
+const horsesFixture: Horse[] = [{ id: 'h-1', name: 'Silver Arrow', color: '#111111', condition: 90 }]
 
 const roundsFixture: Round[] = [
   {

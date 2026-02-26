@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createPinia } from 'pinia'
 import { nextTick } from 'vue'
@@ -8,9 +8,7 @@ import { HORSE_COUNT, ROUND_COUNT } from '@/constants/race'
 import { ROUND_STATUS, type Round } from '@/types/round'
 import type { Horse } from '@/types/horse'
 
-const horsesFixture: Horse[] = [
-  { id: 'h-1', name: 'Silver Arrow', color: '#123456', condition: 85 },
-]
+const horsesFixture: Horse[] = [{ id: 'h-1', name: 'Silver Arrow', color: '#123456', condition: 85 }]
 
 const pendingRoundFixture: Round = {
   id: 'r-1',
@@ -75,9 +73,7 @@ describe('RaceHeader', () => {
       rounds: [pendingRoundFixture],
     })
     await nextTick()
-    const startButton = wrapper
-      .findAll('[data-test="base-button"]')
-      .find((button) => button.text().trim() === 'Start')
+    const startButton = wrapper.findAll('[data-test="base-button"]').find((button) => button.text().trim() === 'Start')
 
     expect(startButton).toBeDefined()
     await startButton!.trigger('click')
@@ -93,9 +89,7 @@ describe('RaceHeader', () => {
       rounds: [inProgressRoundFixture],
     })
     await nextTick()
-    const pauseButton = wrapper
-      .findAll('[data-test="base-button"]')
-      .find((button) => button.text().trim() === 'Pause')
+    const pauseButton = wrapper.findAll('[data-test="base-button"]').find((button) => button.text().trim() === 'Pause')
 
     expect(wrapper.text()).toContain('Pause')
     expect(wrapper.text()).not.toContain('Start')
