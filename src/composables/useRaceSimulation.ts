@@ -1,7 +1,14 @@
 import { computed, onUnmounted, ref, type Ref } from 'vue'
 import { ROUND_STATUS, type Round } from '@/types/round'
 import { useAnimationLoop } from '@/composables/useAnimationLoop'
-import { BASE_SPEED, NEXT_ROUND_DELAY_MS } from '@/constants/race'
+import {
+  BASE_SPEED,
+  CONDITION_FACTOR_BASE,
+  CONDITION_FACTOR_RANGE,
+  NEXT_ROUND_DELAY_MS,
+  RANDOM_FACTOR_MIN,
+  RANDOM_FACTOR_RANGE,
+} from '@/constants/simulation'
 
 /**
  * Runtime simulation metadata for a horse in the active round.
@@ -66,8 +73,8 @@ export const useRaceSimulation = (rounds: Ref<Round[]>) => {
    * Estimates horse finish time in milliseconds from condition and round distance.
    */
   const calculateFinishTime = (condition: number, distance: number): number => {
-    const conditionFactor = 0.8 + (condition / 100) * 0.4
-    const randomFactor = 0.9 + Math.random() * 0.2
+    const conditionFactor = CONDITION_FACTOR_BASE + (condition / 100) * CONDITION_FACTOR_RANGE
+    const randomFactor = RANDOM_FACTOR_MIN + Math.random() * RANDOM_FACTOR_RANGE
     return (distance / (BASE_SPEED * conditionFactor * randomFactor)) * 1000
   }
 
